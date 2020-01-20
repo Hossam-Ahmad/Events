@@ -1,0 +1,35 @@
+$primary:#ec008c;
+$accent:#fc6767;
+.bg-fb{
+    background: #3b5998;
+}
+.bg-insta{
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+}
+.bg-mess{
+    background: #0084ff;
+}
+.bg-mess{
+    background: #0084ff;
+}
+.bg-twit{
+    background: #1da1f2;
+}
+.bg-google{
+    background: #ea4335;
+}
+%background-gradient {
+    background: linear-gradient(to bottom right, #000, $primary);
+}
+
+%btn-gradient {
+    background: linear-gradient(to bottom right, $primary, $accent);
+}
+
+$bg-primary:linear-gradient(to bottom right, $primary, $accent);
+.modal-backdrop{
+    background-color: rgba(57,54,79,1);
+    &.show{
+        opacity: .8;
+    }
+}

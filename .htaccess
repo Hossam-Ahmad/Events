@@ -1,0 +1,13 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /events/
+RewriteCond %{REQUEST_FILENAME}\.php -f 
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ $1.php
+RewriteCond %{REQUEST_URI} !^(/events/assets)
+RewriteCond %{REQUEST_URI} !^(/events/docs)
+RewriteCond %{REQUEST_URI} !^(/events/emailTemplates)
+RewriteCond %{REQUEST_URI} !^(/events/lang)
+RewriteCond %{REQUEST_URI} !^(/events/templates)
+RewriteRule ^(.+)$ index.php [QSA,L]
+</IfModule>

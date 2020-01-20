@@ -1,0 +1,7 @@
+
+[
+    {"name":"_checkbox", "title" : "<input type='checkbox' name='check_all' class='global-checkbox'>", "visible": true, "sortable": false, "filterable":false},
+    {"name":"email","title":"Email","breakpoints":"xs sm"},
+    {"name":"first_name","title":"First Name"},
+    {"name":"last_name","title":"Last Name"}
+  ]

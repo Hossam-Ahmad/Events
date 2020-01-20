@@ -1,0 +1,171 @@
+.widget-calender {
+    background: #fff;
+    box-shadow: 0px 0px 19px rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+    overflow: hidden;
+    color: initial;
+    position: relative;
+    margin-bottom: 30px;
+    width: 200px;
+    border: 1px solid #e2e2e2;
+}
+.widget-calender .d-none{
+    display: none !important;
+}
+.widget-calender .flatpickr-calendar {
+    width: 100%;
+    border-radius: 0;
+    box-shadow: none;
+    border: 0;
+    top:0;
+}
+.widget-calender .tweetBtn{
+    background: #00aced;
+    color: #fff;
+    font-size: 8pt;
+    border-radius: 2px;
+    padding: 5px;
+    margin-top: 5px;
+    text-decoration: none;
+}
+.widget-calender .flatpickr-day.selected,
+.widget-calender .flatpickr-day.startRange,
+.widget-calender .flatpickr-day.endRange,
+.widget-calender .flatpickr-day.selected.inRange,
+.widget-calender .flatpickr-day.startRange.inRange,
+.widget-calender .flatpickr-day.endRange.inRange,
+.widget-calender .flatpickr-day.selected:focus,
+.widget-calender .flatpickr-day.startRange:focus,
+.widget-calender .flatpickr-day.endRange:focus,
+.widget-calender .flatpickr-day.selected:hover,
+.widget-calender .flatpickr-day.startRange:hover,
+.widget-calender .flatpickr-day.endRange:hover,
+.widget-calender .flatpickr-day.selected.prevMonthDay,
+.widget-calender .flatpickr-day.startRange.prevMonthDay,
+.widget-calender .flatpickr-day.endRange.prevMonthDay,
+.widget-calender .flatpickr-day.selected.nextMonthDay,
+.widget-calender .flatpickr-day.startRange.nextMonthDay,
+.widget-calender .flatpickr-day.endRange.nextMonthDay {
+    border-color: #ec008c;
+    background: #ec008c;
+}
+.widget-calender span.flatpickr-weekday {
+    flex: inherit;
+    padding: 3px;
+}
+
+.widget-calender .flatpickr-weekdays .flatpickr-weekdaycontainer {
+    flex: initial;
+}
+.widget-calender .dayContainer{
+    width: 100%;
+    max-width: initial;
+    min-width: initial;
+}
+.widget-calender .flatpickr-days{
+    width: 100%;
+}
+.widget-calender .flatpickr-day {
+    flex-basis: 13%;
+    width: 13%;
+    height: 13%;
+    line-height: 28px;
+}
+
+.widget-calender:hover {
+    text-decoration: none;
+}
+
+.widget-calender:hover .event-actions {
+    opacity: 1 !important;
+}
+
+.widget-calender .card-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: #fff;
+    padding: 3px 15px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 11px rgba(0, 0, 0, 0.4);
+    color: #585858;
+}
+
+.widget-calender .event-img {
+    object-fit: cover;
+    width: 100%;
+    max-height: 150px;
+}
+
+.widget-calender .title {
+    text-align: center;
+    text-decoration: none;
+    margin-top: 12px;
+    font-size: 10pt;
+    margin-bottom: 14px;
+}
+
+.widget-calender .title a {
+    text-decoration: none;
+    color: #ec008c;
+}
+
+.widget-calender .small-text {
+    font-size: 10pt;
+    margin: 0;
+}
+
+.widget-calender .event-body {
+    display: flex;
+    font-family: "Montserrat", sans-serif;
+    padding: 25px 15px 15px;
+    margin-top: -18px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.widget-calender .event-body .date {
+    padding: 0px 20px 0 10px;
+    text-align: center;
+    display: inline-block;
+    width: auto;
+}
+
+.widget-calender .description {
+    color: #555;
+    text-align: center;
+}
+
+.widget-calender .footer p {
+    margin: 0;
+}
+
+.widget-calender .link {
+    text-decoration: none;
+    padding: 5px 10px;
+    background: #ec008c;
+    color: #fff;
+    border-radius: 3px;
+}
+
+.widget-calender .footer {
+    border-top: 1px solid #ccc;
+    display: block;
+    padding: 13px 0;
+    margin-top: 13px;
+}
+
+.widget-calender .event-body .date .date-month {
+    /* margin-bottom: 0; */
+    margin: 0;
+    margin-top: -9px;
+    margin-bottom: 1px;
+    font-size: 9pt;
+    text-align: center;
+}
+
+.widget-calender .event-body .date .date-day {
+    font-size: 36pt;
+    margin: 0;
+    color: #ec008c;
+}

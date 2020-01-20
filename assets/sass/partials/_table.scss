@@ -1,0 +1,303 @@
+.tickets-table {
+    .tickets-table-header {
+        background: #EEEDF2;
+        margin: 0;
+        border: 1px solid #DBDAE3;
+        align-items: center;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        color: #6f7287;
+
+        .text-header {
+            padding: 10px 15px;
+        }
+    }
+
+    .tickets-table-row {
+        background: #fff;
+        margin: 0;
+        border: 1px solid #dbdae3;
+        border-top: 0;
+        padding: 8px 0;
+
+        .form-control::placeholder {
+            color: #ccc !important;
+        }
+
+        textarea {
+            padding-top: 7px;
+        }
+    }
+
+    .input-group.double {
+        position: relative;
+        top: 10px;
+        margin-bottom: 3px;
+
+        .input-group-text {
+            background: transparent;
+            border-right: 0;
+            border-color: #dadada;
+        }
+
+        .form-control {
+            border-left: 0;
+        }
+    }
+
+    .tickets-settings {
+        background: #f7f7f7;
+        padding-left: 45px;
+        padding-top: 15px;
+        border-top: 1px solid #dbdae3;
+        margin-top: 7px;
+    }
+
+    .tickets-controller {
+        padding: 15px;
+        background: #fff;
+        border: 1px solid #dbdae3;
+        border-top: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+
+        .btn {
+            margin-right: 8px;
+            margin-bottom: 8px;
+            border-color: $primary;
+            color: #ffffff;
+            background: $primary;
+
+            i {
+                font-size: 14pt;
+                position: relative;
+                top: 4px;
+            }
+        }
+    }
+
+    .table-item {
+        display: flex;
+        align-items: center;
+
+        .icon-settings:not(.collapsed) {
+            color: $primary;
+        }
+
+        .list-handle {
+            margin-right: 15px;
+            color: #a5a5a5;
+            cursor: move;
+            cursor: -webkit-grabbing;
+            transition: all .2s ease-in-out;
+            transform: rotate(90deg);
+
+            &:hover {
+                color: #333;
+            }
+        }
+
+        .action-bar {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+
+            span {
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.tooltip-price {
+    min-width: 185px;
+    text-align: left;
+
+    .toolti-custom {
+        display: flex;
+        justify-content: space-between;
+        margin: 0;
+        padding-bottom: 9px;
+
+        &:last-child {
+            padding-top: 5px;
+            border-top: 1px solid rgba(255, 255, 255, .7);
+        }
+    }
+}
+
+.table-controller {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+
+    li {
+        margin-right: 10px;
+
+        a {
+            position: relative;
+        }
+
+        &:not(:last-child) {
+            &:after {
+                content: '|';
+                font-weight: normal;
+                color: #292938;
+                margin-left: 6px;
+            }
+        }
+    }
+}
+
+[class^="fooicon-"]:before,
+[class*=" fooicon-"]:before {
+    font-family: "hubbevents" !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-variant: normal !important;
+    text-transform: none !important;
+    speak: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.footable-details.table>tbody>tr>td,
+.footable-details.table>tbody>tr>th,
+.footable-details.table>tfoot>tr>td,
+.footable-details.table>tfoot>tr>th,
+.footable-details.table>thead>tr>td,
+.footable-details.table>thead>tr>th,
+.footable.table>tbody>tr>td,
+.footable.table>tbody>tr>th,
+.footable.table>tfoot>tr>td,
+.footable.table>tfoot>tr>th,
+.footable.table>thead>tr>td,
+.footable.table>thead>tr>th {
+    padding: 11px 6px !important;
+    border-top: none !important;
+}
+
+.footable .pagination>.active>a,
+.footable .pagination>.active>a:focus,
+.footable .pagination>.active>a:hover,
+.footable .pagination>.active>span,
+.footable .pagination>.active>span:focus,
+.footable .pagination>.active>span:hover {
+    background-color: $accent !important;
+    border-color: $accent !important;
+    color: #fff !important;
+}
+.footable .pagination>li>a, .footable .pagination>li>span{
+    margin: 5px;
+    color: $accent !important;
+}
+
+.footable-icons {
+    .fooicon-search:before {
+        content: "\74";
+    }
+    .fooicon-loader:before{
+        content: "\39";
+    }
+    .fooicon-remove:before {
+        content: "\54";
+    }
+
+    .fooicon-sort:before {
+        content: "\35";
+    }
+
+    .fooicon-sort-asc:before {
+        content: "\36";
+    }
+
+    .fooicon-sort-desc:before {
+        content: "\37";
+    }
+
+    .fooicon-plus:before {
+        content: "\4a";
+    }
+
+    .fooicon-minus:before {
+        content: "\54";
+    }
+    tbody>tr.footable-empty{
+        td{
+            padding: 36px 0 !important;
+            font-size: 14pt !important;
+            background: #fff;
+            color: #b3b3b3;
+            letter-spacing: 2px;
+        }
+    }
+    &.full-screen{
+        .footable-filtering-search{
+            .input-group{
+                width: 100% !important;
+                .input-group-btn{
+                    width: 42px;
+                }
+            }
+
+        }
+    }
+    .filter-container{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .footable-filtering-search {
+        width: 100%;
+
+        .form-control {
+            height: 50px;
+            display: block;
+            font-weight: 700;
+            padding: 0px 20px;
+            border-radius: 3px;
+            color: #333;
+            font-size: 14px;
+            -webkit-transition: all 0.3s ease-in-out;
+            -o-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+            border: 1px solid #f0f0f0;
+            background-color: #f7f7f7;
+            box-shadow: none;
+        }
+
+        .input-group-btn {
+            width: 42px;
+
+            .btn {
+                padding: 14px;
+                color: #292938;
+                background: #f7f7f7;
+                border-color: #f0f0f0;
+                max-height: 50px;
+            }
+        }
+    }
+}
+
+.table {
+    thead th {
+        color: $primary;
+    }
+
+    th {
+        border: 0 !important;
+    }
+}
+
+.footable{
+    .dropdown-toggle::after{
+        content: none;
+    }
+}

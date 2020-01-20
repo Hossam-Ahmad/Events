@@ -1,0 +1,100 @@
+.widget-countdown {
+    background: #fff;
+    box-shadow: 0px 0px 19px rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+    overflow: hidden;
+    color: initial;
+    position: relative;
+    margin-bottom: 30px;
+    width: 200px;
+    border: 1px solid #e2e2e2;
+}
+
+.widget-countdown:hover {
+    text-decoration: none;
+}
+
+.widget-countdown:hover .event-actions {
+    opacity: 1 !important;
+}
+
+.widget-countdown .card-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: #fff;
+    padding: 3px 15px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 11px rgba(0, 0, 0, 0.4);
+    color: #585858;
+}
+
+.widget-countdown .event-img {
+    object-fit: cover;
+    width: 100%;
+    max-height: 150px;
+}
+.widget-countdown .title{
+    text-align: center;
+    text-decoration: none;
+    margin-top: 12px;
+    font-size: 10pt;
+    margin-bottom: 14px;
+}
+.widget-countdown .title a {
+    text-decoration: none;
+    color: #ec008c;
+}
+.widget-countdown .small-text{
+    font-size: 10pt;
+    margin: 0;
+}
+.widget-countdown .event-body {
+    display: flex;
+    font-family: "Montserrat", sans-serif;
+    padding: 25px 15px 15px;
+    margin-top: -18px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.widget-countdown .event-body .date {
+    padding: 0px 20px 0 10px;
+    text-align: center;
+    display: inline-block;
+    width: auto;
+}
+.widget-countdown .description{
+    color: #555;
+    text-align: center;
+}
+.widget-countdown .footer p{
+    margin: 0;
+}
+.widget-countdown .link{
+    text-decoration: none;
+    padding: 5px 10px;
+    background: #ec008c;
+    color: #fff;
+    border-radius: 3px;
+}
+.widget-countdown .footer{
+    border-top: 1px solid #ccc;
+    display: block;
+    padding: 13px 0;
+    margin-top: 13px;
+}
+.widget-countdown .event-body .date .date-month {
+    /* margin-bottom: 0; */
+    margin: 0;
+    margin-top: -9px;
+    margin-bottom: 1px;
+    font-size: 9pt;
+    text-align: center;
+}
+
+.widget-countdown .event-body .date .date-day {
+    font-size: 36pt;
+    margin: 0;
+    color: #ec008c;
+}
