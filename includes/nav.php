@@ -247,6 +247,12 @@
                 <a class="nav-link" href="login">
                     <? echo $lang_login; ?></a>
             </li>
+            <? } 
+            if( $page !== "register" && !isset($_SESSION["login_status"])){ ?>
+            <li class="nav-item signin-menu">
+                <a class="nav-link" href="register">
+                    <? echo $lang_register; ?></a>
+            </li>
             <? } ?>
         </ul>
     </div>

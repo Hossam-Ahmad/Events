@@ -25,12 +25,30 @@
                             break;
                         }
                     }
+
+                    $result = mysqli_query($conn,"select name , value from application_settings where name in ('Email to send From:','Email Footer','User must confirm his email after signup - only in new accounts')");
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $email_settings[$row["name"]] = $row["value"];
+                    }
+                    if($email_settings["User must confirm his email after signup - only in new accounts"] == 2){                  
+                        $msg = "This is confirmation email , powered by HUBB Event".$email_settings["Email Footer"];
+                        $msg = wordwrap($msg,70);
+
+                        $headers  = "From: HUBB_Events < ".$email_settings["Email to send From:"]." >\n";
+                        $headers .= "X-Sender: HUBB_Events < ".$email_settings["Email to send From:"]." >\n";
+                        $headers .= 'X-Mailer: PHP/' . phpversion();
+                        $headers .= "X-Priority: 1\n"; // Urgent message!
+                        $headers .= "MIME-Version: 1.0\r\n";
+                        $headers .= "Content-Type: text/html; charset=utf-8\n";
+
+                        mail($email, "Activation | HUBB Event", $msg, $headers);
+
+                        redirect('email_confirmation');
+                    }else{
+                        redirect('login');
+                    }
+
                     
-                    echo "
-                        <script>
-                            window.location.href = 'email_confirmation';
-                        </script>
-                    ";
                 }
                 else{
                     $error_message = "This email is already registered";

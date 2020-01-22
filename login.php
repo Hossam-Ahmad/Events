@@ -12,11 +12,7 @@
                 else if($account_status == 1){
                     $error_message = "This account is inactive";
                 }else if($email_confirmed == 1){
-                    echo "
-                        <script>
-                            window.location.href = 'email_confirmation';
-                        </script>
-                    ";
+                    redirect('email_confirmation');
                 }else{
                     if($rememberMe){
                         setcookie("login_status",true,2147483647);
@@ -33,12 +29,7 @@
                         $_SESSION["user_email"] = $email;
                         $_SESSION["user_id"] = $id;
                     }
-                    
-                    echo "
-                        <script>
-                            window.location.href = 'home';
-                        </script>
-                    ";
+                    redirect('home');
                 }
             }
         }

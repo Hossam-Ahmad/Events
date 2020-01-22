@@ -24,6 +24,7 @@ $lang_eventFront_="xxxx";
 $lang_dir="ltr";
 $lang_align="left";
 $lang_login="Sign in";
+$lang_register="Register";
 $lang_eventFront_browseEvents="Browse Events";
 $lang_eventFront_organize="Organize";
 $lang_eventFront_overview="Overview";
