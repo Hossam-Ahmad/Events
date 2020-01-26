@@ -2,7 +2,7 @@
     ob_start();
     $page = $_SERVER['REQUEST_URI'];
     $page = substr($page, strpos($page, '/', 1)+1);
-    $routes = ["login","register","home","email_confirmation"];
+    $routes = ["login","register","home","email_confirmation","create_event","event_preview","event","event_dashboard"];
 
     if(!in_array($page,$routes)){
         $page = "home";

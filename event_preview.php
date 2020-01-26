@@ -1,45 +1,31 @@
-<? $page="event_preview";
-   $login=1;
-   include ('lang/en.php'); 
-?>
-<!DOCTYPE html>
-<html>
 
-<head>
-    <? include("includes/header.php"); ?>
-    <title> Hubb Events - Preview </title>
-    <!-- custom page stylesheets -->
-</head>
-
-<body>
-    <!-- NavBar -->
-    <? include('includes/nav.php'); ?>
-    <!-- App -->
-    <main id="app">
-        <? include('content/event_preview.php'); ?>
-    </main>
-    <!-- Footer -->
-    <? include('includes/footer.php'); ?>
-    <? include('includes/modals.php'); ?>
-    <!-- Scripts -->
-    <script src="assets/js/jquery-3.3.1.min.js"></script>
-    <script src="assets/js/popper.min.js"></script>
-    <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-    <!-- custom page scripts -->
-    <!-- Core -->
-    <script src="assets/js/hubbEvents.js"></script>
-    <script>
-        $(document).ready(function(){
-            var preview = $('.event-preview').contents(),
-                navbar = preview.find('nav.navbar'),
-                footer = preview.find('footer');
-                navbar.remove();
-                footer.remove();
-                iframeHeight = preview.find('html').height();
-                console.log(iframeHeight);
-                $('.event-preview').css('height',iframeHeight+"px");
-        })
-    </script>
-</body>
-
-</html>
+<section class="bg-white">
+    <div class="container-fluid">
+        <div class="dash-header">
+            <div class="text">
+                <span class="text-muted event-status">Draft</span>
+                <h4 class="section-header event-name p-0 m-0">Event Name</h4>
+                <span class="text-muted event-time">Tuesday, January 1, 2019 at 7:00 PM - Saturday, February 2, 2019 at 10:00 PM (EET)</span>
+            </div>
+            <div class="actions">
+                <a href="javascript:void(0)" class="btn btn-outline btn-default">Save</a>
+                <a href="javascript:void(0)" class="btn btn-outline btn-default">View</a>
+                <a href="javascript:void(0)" class="btn btn-primary">publish</a>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="dash-tabs">
+    <div class="container-fluid">
+        <ul class="default">
+            <li><a href="create_event" class="dash-link">Edit</a></li>
+            <li><a href="javascript:void(0)" class="dash-link active">Design</a></li>
+            <li><a href="event_dashboard" class="dash-link">Manage</a></li>
+        </ul>
+    </div>
+</section>
+<section class="mt-3">
+    <div class="container event-preview" style="postion:relative;">
+            <? include('event.php'); ?>
+    </div>
+</section>

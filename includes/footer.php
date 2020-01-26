@@ -1,5 +1,5 @@
 <footer>
-    <? if ($page!=="login"){?>
+    <? if (!isset($_SESSION["login_status"])){?>
     <section class="footer-top">
         <div class="container">
             <div class="row">
