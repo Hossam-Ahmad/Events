@@ -8,7 +8,7 @@
                     10:00 PM (EET)</span>
             </div>
             <div class="actions">
-                <a href="event.php" class="btn btn-outline btn-default">View</a>
+                <a href="event" class="btn btn-outline btn-default">View</a>
             </div>
         </div>
     </div>
@@ -16,8 +16,8 @@
 <section class="dash-tabs">
     <div class="container-fluid">
         <ul class="default">
-            <li><a href="create_event.php" class="dash-link">Edit</a></li>
-            <li><a href="event_preview.php" class="dash-link">Design</a></li>
+            <li><a href="create_event" class="dash-link">Edit</a></li>
+            <li><a href="event_preview" class="dash-link">Design</a></li>
             <li><a href="javascript:void(0)" class="dash-link active">Manage</a></li>
         </ul>
     </div>
@@ -72,7 +72,7 @@
                             <div class="card-body">
                                 <i class="card-icon icon-block"></i>
                                 <div class="card-data">
-                                    <h6>Private <a href="create_event.php" class="small">Edit</a></h6>
+                                    <h6>Private <a href="create_event" class="small">Edit</a></h6>
                                     <p class="small mb-0 text-muted">Your event is not listed or searchable.</p>
                                 </div>
                             </div>
@@ -167,7 +167,7 @@
                                                 <h6 class="small">invitations opened</h6>
                                                 <h2>0.00%</h2>
                                                 <small class="text-muted">conversion rate</small>
-                                                <a href="createinvite.php" class="small d-block">Send email invitations</a>
+                                                <a href="createinvite" class="small d-block">Send email invitations</a>
                                             </div>
                                         </div>
                                     </div>
@@ -193,7 +193,7 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td><a href="create_event.php">Ticket name</a></td>
+                                                        <td><a href="create_event">Ticket name</a></td>
                                                         <td></td>
                                                         <td>1/2</td>
                                                         <td>On Sale</td>
@@ -262,7 +262,7 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td><a href="orders.php">873191405</a></td>
+                                                        <td><a href="orders">873191405</a></td>
                                                         <td>Don joe</td>
                                                         <td>1</td>
                                                         <td>$0.00</td>
@@ -284,7 +284,7 @@
                                     <div class="card-body">
                                         <h6>
                                             Your Organizer URL:
-                                            <a href="organization.php"> http://scarsaffvggc.hubb-Event.com?s=31431089</a>
+                                            <a href="organization"> http://scarsaffvggc.hubb-Event.com?s=31431089</a>
                                             <a href="#organizerURL" data-toggle="collapse" role="button" aria-expanded="false"
                                                 aria-controls="organizerURL">[change]</a>
                                             <div id="organizerURL" class="collapse">

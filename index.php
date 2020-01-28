@@ -1,12 +1,13 @@
 <?
     ob_start();
+    $root_path = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
+    $root_path .= 'events/'; //comment this line before commit
     $page = $_SERVER['REQUEST_URI'];
     $page = substr($page, strpos($page, '/', 1)+1);
-    $routes = ["login","register","home","email_confirmation","create_event","event_preview","event","event_dashboard"];
-
-    if(!in_array($page,$routes)){
-        $page = "home";
-    }
+    
+    require_once("router.php");
+    $router = new router($page);
+    $page = $router->route();
 
     if(isset($_COOKIE["lang"])){
         include ("lang/".$_COOKIE["lang"].".php");
@@ -22,11 +23,23 @@
     }
 
     function redirect($link){
+        $root_path = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
+        $root_path .= 'events/'; //comment this line before commit
+    
         echo "
             <script>
-                window.location.href = '$link';
+                window.location.href = '".$root_path.$link."';
             </script>
         ";
+    }
+    
+    function convert_route_regx($route){
+        $route = str_replace("/","\/",$route);
+        $route = "/".preg_replace('/{(.*?)}/', '[a-z0-9\-]+', $route);
+        if(substr($route,-1) != '/'){
+            $route .= '/';
+        }
+        return $route;
     }
     
 ?>
@@ -51,15 +64,15 @@
     <? include('includes/footer.php'); ?>
     <? include('includes/modals.php'); ?>
     <!-- Scripts -->
-    <script src="assets/js/jquery-3.3.1.min.js"></script>
-    <script src="assets/js/popper.min.js"></script>
-    <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<? echo $root_path?>assets/js/jquery-3.3.1.min.js"></script>
+    <script src="<? echo $root_path?>assets/js/popper.min.js"></script>
+    <script src="<? echo $root_path?>assets/vendor/bootstrap/js/bootstrap.min.js"></script>
     <!-- custom page scripts -->
-    <script src="assets/vendor/OwlCarousel2-2.3.4/owl.carousel.min.js"></script>
-    <script src="assets/js/parallax.min.js"></script>
-    <script src="assets/js/home.js"></script>
+    <script src="<? echo $root_path?>assets/vendor/OwlCarousel2-2.3.4/owl.carousel.min.js"></script>
+    <script src="<? echo $root_path?>assets/js/parallax.min.js"></script>
+    <script src="<? echo $root_path?>assets/js/home.js"></script>
     <!-- Core -->
-    <script src="assets/js/hubbEvents.js"></script>
+    <script src="<? echo $root_path?>assets/js/hubbEvents.js"></script>
 </body>
 
 </html>

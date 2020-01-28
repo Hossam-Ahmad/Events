@@ -432,7 +432,7 @@
                             </div>
                             <div class="description">
                                 <h6 class="title font-weight-bold">
-                                    <a href="event.php" class="text-dark">
+                                    <a href="event" class="text-dark">
                                         Tips on Recommendation Letters by EducationUSA Alexandria
                                     </a>
                                 </h6>
@@ -447,7 +447,7 @@
                 </div>
                 <!-- event card -->
                 <div class="col-xl-4 col-md-6">
-                    <div href="event.php" class="d-block event-card">
+                    <div href="event" class="d-block event-card">
                         <img src="assets/img/demo/4.jpeg" class="event-img w-100" alt="">
                         <div class="event-actions">
                             <div class="d-flex">
@@ -466,7 +466,7 @@
                             </div>
                             <div class="description">
                                 <h6 class="title font-weight-bold">
-                                    <a href="event.php" class="text-dark">
+                                    <a href="event" class="text-dark">
                                         Get Your Masters or PhD in the U.S. (Alexandria)
                                     </a>
                                     </h6>
@@ -480,7 +480,7 @@
                 </div>
                 <!-- event card -->
                 <div class="col-xl-4 col-md-6">
-                    <div href="event.php" class="d-block event-card">
+                    <div href="event" class="d-block event-card">
                         <img src="assets/img/demo/4.jpg" class="event-img w-100" alt="">
                         <div class="event-actions">
                             <div class="d-flex">
@@ -499,7 +499,7 @@
                             </div>
                             <div class="description">
                                 <h6 class="title font-weight-bold">
-                                    <a href="event.php" class="text-dark">
+                                    <a href="event" class="text-dark">
                                         StartupZ Fair | Alexandria
                                     </a>
                                 </h6>
@@ -514,7 +514,7 @@
             </div>
             <!-- see more  -->
             <div class="text-center">
-                <a href="all_events.php" class="btn btn-custom">See more</a>
+                <a href="all_events" class="btn btn-custom">See more</a>
             </div>
         </div>
     </div>

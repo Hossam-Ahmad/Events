@@ -1,13 +1,13 @@
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="assets/vendor/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="assets/vendor/OwlCarousel2-2.3.4/owl.carousel.min.css">
-<link rel="stylesheet" type="text/css" href="assets/vendor/OwlCarousel2-2.3.4/owl.theme.default.css">
-<link rel="stylesheet" type="text/css" href="assets/vendor/animate.min.css">
+<link rel="stylesheet" type="text/css" href="<? echo $root_path?>assets/vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="<? echo $root_path?>assets/vendor/OwlCarousel2-2.3.4/owl.carousel.min.css">
+<link rel="stylesheet" type="text/css" href="<? echo $root_path?>assets/vendor/OwlCarousel2-2.3.4/owl.theme.default.css">
+<link rel="stylesheet" type="text/css" href="<? echo $root_path?>assets/vendor/animate.min.css">
 <!-- custom icons  -->
-<link rel="stylesheet" type="text/css" href="assets/css/fonts.css">
-<link rel="stylesheet" type="text/css" href="assets/css/events.css">
+<link rel="stylesheet" type="text/css" href="<? echo $root_path?>assets/css/fonts.css">
+<link rel="stylesheet" type="text/css" href="<? echo $root_path?>assets/css/events.css">
 <?
 extract($_GET);
 extract($_POST);
@@ -31,6 +31,19 @@ $seo_description = $application_settings["Search engine Description"];
 if(!isset($_SESSION)){
     session_start();
 }
+
+$user_browser=$_SERVER['HTTP_USER_AGENT'];
+$user_IP=$_SERVER['REMOTE_ADDR'];
+if(isset($_SERVER['HTTP_REFERER'])){
+    $user_referrer=$_SERVER['HTTP_REFERER'];
+}
+require_once('geoplugin.class.php');
+$geoplugin = new geoPlugin();
+$geoplugin->locate();
+$userLongtitude=$geoplugin->longitude;
+$userLatitude=$geoplugin->latitude;
+$userCountryName=$geoplugin->countryName;
+$userCountryCode=$geoplugin->countryCode;
 
 ?>
 

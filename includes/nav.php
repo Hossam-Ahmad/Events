@@ -1,19 +1,19 @@
 <?
     if(isset($logout))
     {
-        setcookie("login_status","",1);
-        setcookie("user_name","",1);
-        setcookie("user_email","",1);
-        setcookie("user_id","",1);
         unset($_SESSION["login_status"]);
         unset($_SESSION["user_name"]);
         unset($_SESSION["user_email"]);
         unset($_SESSION["user_id"]);
+        setcookie("login_status","",1);
+        setcookie("user_name","",1);
+        setcookie("user_email","",1);
+        setcookie("user_id","",1);
     }
 ?>
 <nav class="navbar navbar-expand-lg navbar-light fixed-top">
     <a class="navbar-brand" href="./">
-        <img src="assets/img/logo-black.png" style="width:80px" alt="">
+        <img src="<? echo $root_path?>assets/img/logo-black.png" style="width:80px" alt="">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,7 +69,7 @@
                     <div class="notification-container">
                         <!-- Link -->
                         <a href="#" class="dropdown-item notification-area">
-                            <img src="assets/img/icons/ico-1.png" class="notification-img" alt="">
+                            <img src="<? echo $root_path?>assets/img/icons/ico-1.png" class="notification-img" alt="">
                             <div class="notification-body small">
                                 <p class="m-0">
                                     <strong>Don joe</strong>
@@ -81,7 +81,7 @@
                         </a>
                         <!-- Link -->
                         <a href="#" class="dropdown-item notification-area">
-                            <img src="assets/img/icons/ico-4.png" class="notification-img" alt="">
+                            <img src="<? echo $root_path?>assets/img/icons/ico-4.png" class="notification-img" alt="">
                             <div class="notification-body small">
                                 <p class="m-0">
                                     <strong>Event name</strong>
@@ -92,7 +92,7 @@
                         </a>
                          <!-- Link -->
                          <a href="#" class="dropdown-item notification-area">
-                            <img src="assets/img/icons/ico-5.png" class="notification-img" alt="">
+                            <img src="<? echo $root_path?>assets/img/icons/ico-5.png" class="notification-img" alt="">
                             <div class="notification-body small">
                                 <p class="m-0">
                                     new
@@ -105,7 +105,7 @@
                         </a>
                         <!-- Link -->
                         <a href="#" class="dropdown-item notification-area">
-                            <img src="assets/img/icons/ico-2.png" class="notification-img" alt="">
+                            <img src="<? echo $root_path?>assets/img/icons/ico-2.png" class="notification-img" alt="">
                             <div class="notification-body small">
                                 <p class="m-0">
                                     <strong>Don joe</strong>
@@ -117,7 +117,7 @@
                         </a>
                         <!-- Link -->
                         <a href="#" class="dropdown-item notification-area">
-                            <img src="assets/img/icons/ico-6.png" class="notification-img" alt="">
+                            <img src="<? echo $root_path?>assets/img/icons/ico-6.png" class="notification-img" alt="">
                             <div class="notification-body small">
                                 <p class="m-0">
                                     <strong>Event name</strong>
@@ -128,7 +128,7 @@
                         </a>
                          <!-- Link -->
                          <a href="#" class="dropdown-item notification-area">
-                            <img src="assets/img/icons/ico-7.png" class="notification-img" alt="">
+                            <img src="<? echo $root_path?>assets/img/icons/ico-7.png" class="notification-img" alt="">
                             <div class="notification-body small">
                                 <p class="m-0">
                                     new
@@ -188,7 +188,7 @@
             <!-- not visible in create event page -->
             <? if ($page !== "create_event"){ ?>
             <li class="nav-item">
-                <a class="nav-link action-link" href="create_event">
+                <a class="nav-link action-link" href="<? echo $root_path?>create_event">
                     <? echo $lang_eventFront_createEvent; ?></a>
             </li>
             <? } ?>
@@ -199,7 +199,7 @@
                     <a class="nav-link dropdown-toggle avatar-holder" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <div class="nav-avatar d-flex align-items-center">
-                            <img src="assets/img/people/1.jpg" class="avatar" alt="">
+                            <img src="<? echo $root_path?>assets/img/people/1.jpg" class="avatar" alt="">
                             <p><? echo $_SESSION["user_name"] ?></p>
                         </div>
                     </a>
@@ -244,13 +244,13 @@
             <!-- not visible at login page -->
             <? if( $page !== "login" && !isset($_SESSION["login_status"])){ ?>
             <li class="nav-item signin-menu">
-                <a class="nav-link" href="login">
+                <a class="nav-link" href="<? echo $root_path?>login">
                     <? echo $lang_login; ?></a>
             </li>
             <? } 
             if( $page !== "register" && !isset($_SESSION["login_status"])){ ?>
             <li class="nav-item signin-menu">
-                <a class="nav-link" href="register">
+                <a class="nav-link" href="<? echo $root_path?>register">
                     <? echo $lang_register; ?></a>
             </li>
             <? } ?>

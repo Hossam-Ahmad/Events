@@ -2,12 +2,12 @@
     <div class="event-view">
 
         <div class="event-bg-cover">
-            <img src="assets/img/demo/4.jpeg" alt="">
+            <img src="<? echo $root_path?>assets/img/demo/4.jpeg" alt="">
         </div>
         <div class="container container-sm bg-white">
             <div class="wrapper">
                 <div class="event-card row m-0">
-                    <img src="assets/img/demo/4.jpeg" class="event-img col-lg-3 col-md-4 p-0" alt="">
+                    <img src="<? echo $root_path?>assets/img/demo/4.jpeg" class="event-img col-lg-3 col-md-4 p-0" alt="">
                     <article class="event-body m-0 col-lg-9 col-md-8">
                         <div class="date">
                             <p class="date-month">Nov</p>
@@ -138,8 +138,8 @@
                 <hr>
                 <section class="organizer-section">
                     <div class="text-center">
-                        <img src="assets/img/people/2.jpg" alt="">
-                        <a href="organization.php">Organizer EducationUSA At AMIDEAST/Alexandria</a>
+                        <img src="<? echo $root_path?>assets/img/people/2.jpg" alt="">
+                        <a href="organization">Organizer EducationUSA At AMIDEAST/Alexandria</a>
                         <p class="text-muted">Organizer of Tips on CV Writing by EducationUSA at Amideast Alexandria</p>
                         <div class="d-flex">
                             <a href="javascript:void(0)" class="btn btn-outline btn-outline-default toggle" data-toggle="active">Follow</a>
