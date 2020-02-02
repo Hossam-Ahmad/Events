@@ -1,8 +1,5 @@
-<body>
-    <!-- App -->
-    <main id="app">
-        
-    <div class="owl-carousel owl-theme event-slider">
+
+<div class="owl-carousel owl-theme event-slider">
     <!-- event slide -->
     <div class="event-slide">
         <div class="event-img">

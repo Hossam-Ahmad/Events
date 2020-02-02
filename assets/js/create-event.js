@@ -7,8 +7,9 @@ function editor(selector) {
         },
         theme: 'snow'
     });
+    return quill;
 }
-editor('#editorContainer1');
+var editor1 = editor('#editorContainer1');
 editor('#editorContainer2');
 Sortable.create(dragableList, {
     handle: '.list-handle',

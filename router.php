@@ -9,8 +9,7 @@
         function __construct($page){
             $this->page = $page;
             $this->routes_unauthenticated = ["login","register","home","email_confirmation"];
-            $this->routes_authenticated = [];
-            $this->routes_authenticated["event/{name}/{desc}/{id}"] = "event";
+            $this->routes_authenticated["event/{name}"] = "event";
             $this->routes_authenticated["home"] = "home";
             $this->routes_authenticated["create_event"] = "create_event";
             $this->routes_authenticated["event_preview"] = "event_preview";

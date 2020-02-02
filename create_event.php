@@ -1,3 +1,45 @@
+<?
+    if(isset($action)){
+
+        $today = date('Y-m-d h:i');
+
+        $start_timeStamp = $start_date." ".$start_time;
+        $end_timeStamp = $end_date." ".$end_time;
+
+        $price_type = 1;
+
+        if(isset($_POST["show_remaining_tickets"])){
+            $show_remaining_tickets = 1;
+        }else{
+            $show_remaining_tickets = 0;
+        }
+
+        if(isset($saved_event_id)){
+
+            var_dump("UPDATE events SET name = '$title', start_at = '$start_timeStamp', end_at = '$end_timeStamp', lat ='', lng ='', address ='$address', hosting_place ='$hosting_place', details ='$description', image ='$image', price_type =$price_type, owner_id =".$_SESSION["user_id"].", category_id =$event_type, facebook ='$facebook', twitter ='$twitter', show_remaining_tickets =$show_remaining_tickets, privacy =$privacy WHERE id = $saved_event_id");
+
+        }else{
+            mysqli_query($conn,"INSERT INTO events (name , added_at, start_at, end_at, lat, lng, address, hosting_place, details, image, price_type, owner_id ,  category_id ,  facebook ,  twitter ,  show_remaining_tickets ,  privacy ) VALUES 
+            ('$title','$today','$start_timeStamp','$end_timeStamp','','','$address','$hosting_place','$description','$image',$price_type,".$_SESSION["user_id"].",$event_type,'$facebook','$twitter',".$show_remaining_tickets.",$privacy)");
+        }
+
+        if($action == 1){
+
+        }
+        else if($action == 2){
+
+        }
+        else if($action == 3){
+
+        }
+    }
+    
+
+?>
+<link rel="stylesheet" href="assets/vendor/flatpickr/flatpickr.min.css">
+    <link rel="stylesheet" href="assets/vendor/dropify/css/dropify.min.css">
+    <link rel="stylesheet" href="assets/vendor/quill/quill.snow.css">
+    <link rel="stylesheet" href="assets/vendor/sortable/sortable.min.css">
 <section class="bg-white">
     <div class="container-fluid">
         <div class="dash-header">
@@ -7,9 +49,19 @@
                 <span class="text-muted event-time"></span>
             </div>
             <div class="actions">
-                <a href="javascript:void(0)" class="btn btn-outline btn-default">Save</a>
-                <a href="javascript:void(0)" class="btn btn-outline btn-default">View</a>
-                <a href="javascript:void(0)" class="btn btn-primary">publish</a>
+                <button type="submit" form="event_form" class="btn btn-outline btn-default" onclick="document.getElementById('action').value = '1';document.getElementById('description').value = JSON.stringify(editor1.getContents().ops[0].insert);">
+                    save
+                </button>
+
+                <button type="submit" form="event_form" class="btn btn-outline btn-default" onclick="document.getElementById('action').value = '2';">
+                View
+                </button>
+
+                <button type="submit" form="event_form" class="btn btn-primary" onclick="document.getElementById('action').value = '3';">
+                publish
+                </button>
+                
+                
             </div>
         </div>
     </div>
@@ -24,7 +76,9 @@
 </section>
 <section>
     <div class="container">
-        <form action="">
+        <form id="event_form" action="./create_event" method="post">
+            <input id="action" type="hidden" name="action" value="1">
+            <input id="description" name="description" type="hidden" value="">
             <div class="step">
                 <div class="step-title">
                     <span class="number">1</span>
@@ -34,13 +88,16 @@
                 <div class="step-body form-light col-md-8">
                     <div class="form-group">
                         <label for="" class="required" class="form-control-label">Event title</label>
-                        <input type="text" class="form-control" placeholder="Give it a short distinct name">
+                        <input name="title" type="text" class="form-control" placeholder="Give it a short distinct name" required  />
                     </div>
                     <div class="form-group">
                         <label for="" class="required" class="form-control-label">Location</label>
                         <!-- Google location seardh input  -->
                         <div id="eventLocationDefault">
-                            <input type="text" class="form-control" placeholder="Search for a venue or address.">
+                            <input type="text" id="address" name="address" class="form-control" placeholder="Search for a venue or address." required />
+                            <div id="addressList">
+                                
+                            </div>
                             <small class="d-flex form-flex">
                                 <a href="" class="d-inline-block p-2" data-toggle="replace" data-replace="#eventLocationDefault"
                                     data-replace-with="#eventLocationOnline">Online
@@ -61,23 +118,23 @@
                             <div class="row">
                                 <div class="col-md-8">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Enter the venue's name">
+                                        <input name="hosting_place" type="text" class="form-control" placeholder="Enter the venue's name">
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Address">
+                                        <input name="address1" type="text" class="form-control" placeholder="Address">
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Address 2">
+                                        <input name="address2" type="text" class="form-control" placeholder="Address 2">
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="State">
+                                                <input name="state" type="text" class="form-control" placeholder="State">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="Zip/Postal">
+                                                <input name="postal" type="text" class="form-control" placeholder="Zip/Postal">
                                             </div>
                                         </div>
                                     </div>
@@ -99,8 +156,8 @@
                             <div class="form-group">
                                 <label for="" class="required" class="form-control-label">Starts</label>
                                 <div class="d-flex form-flex">
-                                    <input type="text" class="form-control flatpickr" placeholder="Select date..">
-                                    <input type="time" value="13:30" class="form-control">
+                                    <input name="start_date" type="text" class="form-control flatpickr" placeholder="Select date.." required  />
+                                    <input name="start_time" type="time" class="form-control" required  />
                                 </div>
                             </div>
                         </div>
@@ -108,8 +165,8 @@
                             <div class="form-group">
                                 <label for="" class="required" class="form-control-label">Ends</label>
                                 <div class="d-flex form-flex">
-                                    <input type="text" class="form-control flatpickr" placeholder="Select date..">
-                                    <input type="time" value="13:30" class="form-control">
+                                    <input name="end_date" type="text" class="form-control flatpickr" placeholder="Select date.." required  />
+                                    <input name="end_time" type="time" class="form-control" required  />
                                 </div>
                             </div>
                         </div>
@@ -119,7 +176,7 @@
                         <!-- check options url https://github.com/JeremyFagis/dropify -->
                         <div class="row">
                             <div class="col-md-9">
-                                <input type="file" class="dropify" accept="image/*" data-height="200">
+                                <input id="image" name="image" type="file" class="dropify" accept="image/*" data-height="200" required />
                                 <small class="text-muted">
                                     We recommend using at least a 2160x1080px (2:1 ratio) image that's no larger than
                                     10MB. <a href="" class="d-block">Learn more.</a>
@@ -130,7 +187,8 @@
                     <div class="form-group">
                         <label for="" class="required" class="form-control-label">Event Description</label>
                         <!-- Editor -->
-                        <div id="editorContainer1" class="bg-white" style="min-height:250px"></div>
+                        <div id="editorContainer1" class="bg-white" style="min-height:250px">
+                        </div>
                         <a href="javascript:void(0)" class="d-block mt-3" data-toggle="modal" data-target="#eventFAQ">
                             Add FAQs</a>
                         </a>
@@ -169,13 +227,13 @@
                                 <div class="input-group-prepend">
                                     <div class="input-group-text bg-fb text-white"><i class="icon-facebook"></i></div>
                                 </div>
-                                <input type="text" class="form-control" placeholder="facebook.com/">
+                                <input name="facebook" type="text" class="form-control" placeholder="facebook.com/"  />
                             </div>
                             <div class="input-group mb-2">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text bg-twit text-white"><i class="icon-twitter"></i></div>
                                 </div>
-                                <input type="text" class="form-control" placeholder="twitter.com/">
+                                <input name="twitter" type="text" class="form-control" placeholder="twitter.com/"  />
                             </div>
                         </div>
                     </div>
@@ -231,47 +289,36 @@
                     <div class="form-group">
                         <label for="" class="form-control-label">Listing Privacy</label>
                         <div class="custom-control custom-radio">
-                            <input type="radio" class="custom-control-input" name="additionalSettings" id="additionalSetting1">
+                            <input name="privacy" value="1" type="radio" class="custom-control-input" name="additionalSettings" id="additionalSetting1" checked>
                             <label class="custom-control-label" for="additionalSetting1">Public page: <small class="text-muted">Discoverable
                                     by anyone on Eventbrite, our distribution partners, and search engines.</small></label>
                         </div>
                         <div class="custom-control custom-radio">
-                            <input type="radio" class="custom-control-input" name="additionalSettings" id="additionalSetting2">
+                            <input name="privacy" value="2" type="radio" class="custom-control-input" name="additionalSettings" id="additionalSetting2">
                             <label class="custom-control-label" for="additionalSetting2">Private page: <small class="text-muted">Accessible
                                     only by people you specify.</small></label>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="" class="form-control-label">Event type</label>
-                        <select name="" class="form-control">
+                        <select name="event_type" class="form-control" required >
                             <option value="" selected="selected">Select the type of event</option>
-                            <option value="1">Appearance or Signing</option>
-                            <option value="2">Attraction</option>
-                            <option value="3">Camp, Trip, or Retreat</option>
-                            <option value="4">Class, Training, or Workshop</option>
-                            <option value="5">Concert or Performance</option>
-                            <option value="6">Conference</option>
-                            <option value="7">Convention</option>
-                            <option value="8">Dinner or Gala</option>
-                            <option value="9">Festival or Fair</option>
-                            <option value="10">Game or Competition</option>
-                            <option value="11">Meeting or Networking Event</option>
-                            <option value="12">Other</option>
-                            <option value="13">Party or Social Gathering</option>
-                            <option value="14">Race or Endurance Event</option>
-                            <option value="15">Rally</option>
-                            <option value="16">Screening</option>
-                            <option value="17">Seminar or Talk</option>
-                            <option value="18">Tour</option>
-                            <option value="19">Tournament</option>
-                            <option value="20">Tradeshow, Consumer Show, or Expo</option>
+                            <?
+                                $result = mysqli_query($conn,"select name from categories");
+                                $i=1;
+                                while(list($name) = mysqli_fetch_row($result)){
+                                    echo "<option value='$i'>$name</option>";
+                                    $i++;
+                                }
+
+                            ?>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="" class="form-control-label">Event Topic</label>
                         <div class="row">
                             <div class="col-md-6">
-                                <select name="" class="form-control">
+                                <select name="" class="form-control" required >
                                     <option value="" selected="selected">Select a topic</option>
                                     <option value="1">Auto, Boat &amp; Air</option>
                                     <option value="2">Business &amp; Professional</option>
@@ -301,16 +348,16 @@
                     <div class="form-group">
                         <label for="" class="form-control-label">Remaining Tickets</label>
                         <div class="custom-control custom-checkbox">
-                            <input type="checkbox" id="remainingTickets" class="custom-control-input">
+                            <input name="show_remaining_tickets" type="checkbox" id="remainingTickets" class="custom-control-input" checked>
                             <label class="custom-control-label" for="remainingTickets">Show the number of remaining tickets on your event listing</label>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="actions" style="text-align: center;margin: 2em;">
-                <a href="javascript:void(0)" class="btn btn-outline btn-default">Save</a>
-                <a href="javascript:void(0)" class="btn btn-outline btn-default">View</a>
-                <a href="javascript:void(0)" class="btn btn-primary">publish</a>
+                <a href="javascript:void(0)" class="btn btn-outline btn-default" onclick="document.getElementById('action').value = '1';document.getElementById('event_form').submit();">Save</a>
+                <a href="javascript:void(0)" class="btn btn-outline btn-default" onclick="document.getElementById('action').value = '2';document.getElementById('event_form').submit();">View</a>
+                <a href="javascript:void(0)" class="btn btn-primary" onclick="document.getElementById('action').value = '3';document.getElementById('event_form').submit();">publish</a>
             </div>
         </form>
     </div>
@@ -365,8 +412,8 @@
                 <label for="" class="form-control-label">Ticket sales start</label>
                 <div class="form-group">
                     <div class="d-flex form-flex">
-                        <input type="text" class="form-control flatpickr" placeholder="Select date..">
-                        <input type="time" value="13:30" class="form-control">
+                        <input type="text" class="form-control flatpickr" placeholder="Select date.." />
+                        <input type="time" value="13:30" class="form-control" />
                     </div>
                 </div>
             </div>
@@ -374,8 +421,8 @@
                 <label for="" class="form-control-label">Ticket sales end</label>
                 <div class="form-group">
                     <div class="d-flex form-flex">
-                        <input type="text" class="form-control flatpickr" placeholder="Select date..">
-                        <input type="time" value="13:30" class="form-control">
+                        <input type="text" class="form-control flatpickr" placeholder="Select date.." />
+                        <input type="time" value="13:30" class="form-control" />
                     </div>
                 </div>
             </div>
@@ -568,3 +615,144 @@
         </div>
     </div>
 </li>
+
+<!-- <script>
+
+$(\'#address\').on(\'keyup\', function() {
+        if (this.value.length > 1) {
+            // do search for this.value here
+            console.log(this.value);
+
+            var xhr = new XMLHttpRequest();
+            var url = "http://photon.komoot.de/api/?q="+this.value+"&limit=5";
+            xhr.open("GET", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var json = JSON.parse(xhr.responseText);
+                    var optionsArr = json.features;
+                    var options = \'\';
+                    for(var i = 0; i < optionsArr.length; i++){
+                        var city = optionsArr[i].properties.city;
+                        if(city == undefined){
+                            city = "";
+                        }else{
+                            city = " - " + city;
+                        }
+                        var state = optionsArr[i].properties.state;
+                        if(state == undefined){
+                            state = "";
+                        }else{
+                            state = " , " + state;
+                        }
+                        options += "<div onclick="setAddress(optionsArr[i].properties.name+" - "+optionsArr[i].properties.country + state + city)"> <p style=\'margin-bottom: 0;\'>"+optionsArr[i].properties.name+"</p> <p><b>"+optionsArr[i].properties.country + state + city +"</b></p> </div>";
+                    }
+                    document.getElementById("addressList").innerHTML = options;
+                }
+            };
+            xhr.send();
+
+            
+        }
+   });
+
+</script> -->
+
+<?
+$late_output = '
+<!-- custom page scripts -->
+<script src="assets/vendor/flatpickr/flatpickr.min.js"></script>
+<script src="assets/vendor/quill/quill.min.js"></script>
+<script src="assets/vendor/quill/quill-config.js"></script>
+<script src="assets/vendor/dropify/js/dropify.min.js"></script>
+<script src="assets/vendor/sortable/sortable.min.js"></script>
+<!-- Core -->
+<script src="assets/js/create-event.js"></script>
+<script>
+function setAddress(value) {
+    document.getElementById("address").value = value;
+    document.getElementById("addressList").innerHTML = "";
+}
+</script>
+<script>
+
+$( document ).ready(function() {
+    $(\'.flatpickr-input:visible\').on(\'focus\', function () {
+        $(this).blur()
+    });
+    $(\'.flatpickr-input:visible\').prop(\'readonly\', false);
+
+    $(\'#address\').on(\'keyup\', function() {
+        if (this.value.length > 1) {
+            // do search for this.value here
+            console.log(this.value);
+
+            var xhr = new XMLHttpRequest();
+            var url = "http://photon.komoot.de/api/?q="+this.value+"&limit=5";
+            xhr.open("GET", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var json = JSON.parse(xhr.responseText);
+                    var optionsArr = json.features;
+                    var options = \'\';
+                    for(var i = 0; i < optionsArr.length; i++){
+                        var city = optionsArr[i].properties.city;
+                        if(city == undefined){
+                            city = "";
+                        }else{
+                            city = " - " + city;
+                        }
+                        var state = optionsArr[i].properties.state;
+                        if(state == undefined){
+                            state = "";
+                        }else{
+                            state = " , " + state;
+                        }
+                        options += "<div onclick=\'setAddress("+optionsArr[i].properties.name+" - "+optionsArr[i].properties.country + state + city+")\'> <p style=\'margin-bottom: 0;\'>"+optionsArr[i].properties.name+"</p> <p><b>"+optionsArr[i].properties.country + state + city +"</b></p> </div>";
+                    }
+                    document.getElementById("addressList").innerHTML = options;
+                }
+            };
+            xhr.send();
+
+            
+        }
+   });
+
+   document.querySelector("#address").addEventListener("change",function () {
+       if(this.value.length == 0){
+        document.getElementById("addressList").innerHTML = "";
+       }
+    })
+
+    var _URL = window.URL || window.webkitURL;
+    $("#image").change(function (e) {
+        var file, img;
+        if ((file = this.files[0])) {
+            img = new Image();
+            var objectUrl = _URL.createObjectURL(file);
+            img.onload = function () {
+                alert((file.size/1024.0)/1024.0);
+                if(this.width/this.height < 2 || this.width < 2160 || this.height < 1080){
+                    alert("We recommend using at least a 2160x1080px (2:1 ratio) image");
+                    return false;
+                }
+                if((file.size/1024.0)/1024.0 > 10.0){
+                    alert("We recommend max size is 10MB.");
+                    return false;
+                }
+                alert(this.width + " " + this.height);
+                _URL.revokeObjectURL(objectUrl);
+            };
+            img.src = objectUrl;
+        }
+    });
+
+    //border-danger
+});
+
+</script>
+
+';
+?>

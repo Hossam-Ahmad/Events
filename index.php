@@ -4,6 +4,7 @@
     $root_path .= 'events/'; //comment this line before commit
     $page = $_SERVER['REQUEST_URI'];
     $page = substr($page, strpos($page, '/', 1)+1);
+    $late_output = "";
     
     require_once("router.php");
     $router = new router($page);
@@ -73,6 +74,7 @@
     <script src="<? echo $root_path?>assets/js/home.js"></script>
     <!-- Core -->
     <script src="<? echo $root_path?>assets/js/hubbEvents.js"></script>
+    <? echo $late_output ?>
 </body>
 
 </html>
