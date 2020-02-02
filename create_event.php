@@ -94,7 +94,7 @@
                         <label for="" class="required" class="form-control-label">Location</label>
                         <!-- Google location seardh input  -->
                         <div id="eventLocationDefault">
-                            <input type="text" id="address" name="address" class="form-control" placeholder="Search for a venue or address." required />
+                            <input type="text" id="address" name="address" autocomplete="off" class="form-control" placeholder="Search for a venue or address." required />
                             <div id="addressList">
                                 
                             </div>
@@ -616,47 +616,6 @@
     </div>
 </li>
 
-<!-- <script>
-
-$(\'#address\').on(\'keyup\', function() {
-        if (this.value.length > 1) {
-            // do search for this.value here
-            console.log(this.value);
-
-            var xhr = new XMLHttpRequest();
-            var url = "http://photon.komoot.de/api/?q="+this.value+"&limit=5";
-            xhr.open("GET", url, true);
-            xhr.setRequestHeader("Content-Type", "application/json");
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    var json = JSON.parse(xhr.responseText);
-                    var optionsArr = json.features;
-                    var options = \'\';
-                    for(var i = 0; i < optionsArr.length; i++){
-                        var city = optionsArr[i].properties.city;
-                        if(city == undefined){
-                            city = "";
-                        }else{
-                            city = " - " + city;
-                        }
-                        var state = optionsArr[i].properties.state;
-                        if(state == undefined){
-                            state = "";
-                        }else{
-                            state = " , " + state;
-                        }
-                        options += "<div onclick="setAddress(optionsArr[i].properties.name+" - "+optionsArr[i].properties.country + state + city)"> <p style=\'margin-bottom: 0;\'>"+optionsArr[i].properties.name+"</p> <p><b>"+optionsArr[i].properties.country + state + city +"</b></p> </div>";
-                    }
-                    document.getElementById("addressList").innerHTML = options;
-                }
-            };
-            xhr.send();
-
-            
-        }
-   });
-
-</script> -->
 
 <?
 $late_output = '
@@ -677,16 +636,15 @@ function setAddress(value) {
 <script>
 
 $( document ).ready(function() {
+
     $(\'.flatpickr-input:visible\').on(\'focus\', function () {
         $(this).blur()
     });
+
     $(\'.flatpickr-input:visible\').prop(\'readonly\', false);
 
     $(\'#address\').on(\'keyup\', function() {
         if (this.value.length > 1) {
-            // do search for this.value here
-            console.log(this.value);
-
             var xhr = new XMLHttpRequest();
             var url = "http://photon.komoot.de/api/?q="+this.value+"&limit=5";
             xhr.open("GET", url, true);
@@ -709,14 +667,12 @@ $( document ).ready(function() {
                         }else{
                             state = " , " + state;
                         }
-                        options += "<div onclick=\'setAddress("+optionsArr[i].properties.name+" - "+optionsArr[i].properties.country + state + city+")\'> <p style=\'margin-bottom: 0;\'>"+optionsArr[i].properties.name+"</p> <p><b>"+optionsArr[i].properties.country + state + city +"</b></p> </div>";
+                        options += `<div class="addressContainer"> <p class="addressName" style="margin-bottom: 0;">${optionsArr[i].properties.name}</p> <p class="addressDetails"><b>${optionsArr[i].properties.country + state + city}</b></p> </div>`;
                     }
                     document.getElementById("addressList").innerHTML = options;
                 }
             };
             xhr.send();
-
-            
         }
    });
 
@@ -725,6 +681,11 @@ $( document ).ready(function() {
         document.getElementById("addressList").innerHTML = "";
        }
     })
+
+    $(document).on("click",".addressContainer", function(item) {
+        document.getElementById("address").value = item.currentTarget.children[0].innerText + " - "  + item.currentTarget.children[1].innerText; 
+        document.getElementById("addressList").innerHTML = "";
+    });
 
     var _URL = window.URL || window.webkitURL;
     $("#image").change(function (e) {
